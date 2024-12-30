@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Celebration Game</title>
+    <style>
+        /* Existing styles here */
+    </style>
+</head>
+<body>
+
+    <div class="name" onclick="turnToCandles()">DOLLY ESTONANTO</div>
+
+    <div id="candles-container"></div>
+
+    <div id="birthday-message">🎉 Happy Birthday! 🎉</div>
+
+    <div id="cake-container">
+        <div class="cake" id="cake" onclick="pinCake()"></div>
+    </div>
+
+    <div class="celebration-message" id="celebration-message">🎂 You Did It! 🎂</div>
+
+    <div id="scoreboard">Taps: 0/10</div>
+
+    <div id="extra-link" onclick="showBanner()">Click me for a surprise!</div>
+
+    <div id="banner" onclick="showPersonalMessage()">🎉 Pull me down to celebrate! 🎉</div>
+
+    <div id="personal-message">
+        Hi lang² happy birthday po its your day today welcome sa gang 18 nata pwede nata ma priso hahahha i just want to say happy² birthday wishing you a good health kay para ma archive nato atong goals ahahha its been 2years since we were together and it was fun we were acting strong in our difficulties and thank you for not giving up on me and right now you're already 18 were on the same league na i hope you can make your own decision nga dili na mag kuan ni mama nimo and i just hope na maka adto ko pero dita pwede ana maong unya nalang ni akong gift thank you for staying with me lang² were in this together ok its been a fun journey and i hope we can achieve our goal in nearly future nga kita ra gihapong duha kay ako wakoy plano biyaan ka sure nako nimo if ikaw dipa ka sure or ga duha2 paka nako ingna ko kay ako nakita na nako akong future nimo i just want you to be my wife it might sounds unrealistic pero it is what it is thank you for being loyal and gorgeous wife and i have something to Tell you kabalo baka lang proud kayko nimo kabalo baka nga pwede kong mag lipay² ra sigi if gusto ra nako pero nakita nako nimo nga nanigkamot ka sa tanan² maong naningkamot pod kog akoa kay gi tingala tika proud kayko nimo nga na abot nimo nang naa nimo ron maong mag sunod rako nimo ha if daghan nakag ma achieve mag sunod rako nimo lets work harder kay mo adto patag paris remember ganahan ko pareha ta atong vloger ba katong kath bato ganahan ko ing ato ta sa future
+        Nangarap rako and i hope it end well i love you so much wifey and happy² birthday and advance happy new year po mwahh²♥️
+
+        Greatings from: You're handsome hubby🫡
+    </div>
+
+    <div id="love-question-button" onclick="askLoveQuestion()">Click me to answer a question!</div>
+
+    <div id="blackout"></div>
+
+    <script>
+        let totalCandles = 0;
+        let blownCandles = 0;
+        let tapCount = 0;
+
+        function turnToCandles() {
+            document.querySelector('.name').style.display = 'none';
+            const candlesContainer = document.getElementById('candles-container');
+            candlesContainer.style.display = 'block';
+
+            const name = "DOLLY ESTONANTO";
+            totalCandles = name.length;
+            blownCandles = 0;
+
+            for (let i = 0; i < name.length; i++) {
+                const candle = document.createElement('div');
+                candle.classList.add('candle');
+                candle.innerHTML = `
+                    <div class="candle-stick"></div>
+                    <div class="flame"></div>
+                `;
+
+                candle.onclick = function () {
+                    const flame = candle.querySelector('.flame');
+                    flame.classList.add('blown-out');
+                    blownCandles++;
+
+                    if (blownCandles === totalCandles) {
+                        showBirthdayMessage();
+                    }
+                };
+
+                candlesContainer.appendChild(candle);
+            }
+        }
+
+        function showBirthdayMessage() {
+            const birthdayMessage = document.getElementById('birthday-message');
+            birthdayMessage.style.display = 'block';
+            setTimeout(startBirthdayGame, 2000);
+        }
+
+        function startBirthdayGame() {
+            const cakeContainer = document.getElementById('cake-container');
+            cakeContainer.style.display = 'block';
+            moveCake();
+        }
+
+        function moveCake() {
+            const cake = document.getElementById('cake');
+            const container = document.getElementById('cake-container');
+            const maxX = container.offsetWidth - cake.offsetWidth;
+            const maxY = container.offsetHeight - cake.offsetHeight;
+
+            const randomX = Math.random() * maxX;
+            const randomY = Math.random() * maxY;
+
+            cake.style.left = randomX + 'px';
+            cake.style.top = randomY + 'px';
+        }
+
+        function pinCake() {
+            tapCount++;
+            updateScoreboard();
+            if (tapCount >= 10) {
+                showExtraLink();
+            }
+            moveCake();
+        }
+
+        function updateScoreboard() {
+            const scoreboard = document.getElementById('scoreboard');
+            scoreboard.innerHTML = `Taps: ${tapCount}/10`;
+        }
+
+        function showExtraLink() {
+            const extraLink = document.getElementById('extra-link');
+            extraLink.style.display = 'block';
+        }
+
+        function showBanner() {
+            const banner = document.getElementById('banner');
+            banner.style.display = 'block';
+        }
+
+        function showPersonalMessage() {
+            const personalMessage = document.getElementById('personal-message');
+            personalMessage.style.display = 'block';
+            const loveQuestionButton = document.getElementById('love-question-button');
+            loveQuestionButton.style.display = 'block';
+        }
+
+        function askLoveQuestion() {
+            let answer = prompt("Do you love me? (yes or no)").toLowerCase().trim();
+
+            if (answer === "yes") {
+                // Open the TikTok link in Chrome
+                window.location.href = "https://vt.tiktok.com/ZS6BhLkMU/";  // Redirect to the TikTok video link
+                setTimeout(closePage, 3000); // Give it a few seconds to load before closing
+            } else if (answer === "no") {
+                blackoutScreen();
+            } else {
+                alert("Please answer with 'yes' or 'no'.");
+            }
+        }
+
+        function blackoutScreen() {
+            const blackout = document.getElementById('blackout');
+            blackout.style.display = 'block';
+            setTimeout(() => {
+                blackout.style.display = 'none';
+            }, 10000); // Blackout for 10 seconds
+        }
+
+        function closePage() {
+            window.location.href = 'about:blank'; // Redirect to a blank page to simulate closure
+            setTimeout(function() {
+                window.close(); // Attempt to close the window
+            }, 2000);
+        }
+    </script>
+
+</body>
+</html>
